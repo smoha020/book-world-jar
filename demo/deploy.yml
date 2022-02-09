@@ -1,0 +1,25 @@
+---
+  - name: install mysql maven git
+    hosts: testgroup
+    tasks:
+      - name: Upgrade all packages on the slave
+        apt: upgrade=yes
+        become: yes
+
+      - name: Install the latest versions of each component
+        apt:
+          name:
+            - git
+            - mysql-server
+            - maven
+          state: latest
+        become: yes
+
+      - name: Check that mysql is enabled and running
+        service:
+          name: mysql
+          enabled: true
+          state: started
+        become: yes
+
+
