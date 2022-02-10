@@ -30,4 +30,8 @@
           update: yes
         become: yes
 
+      - name: Prepare jar file
+        shell: |
+          cd /home/ubuntu/repos/demo/ && mvn clean install
+          cd /home/ubuntu/repos/demo/target && java -jar demo-0.0.1-SNAPSHOT.jar
 
