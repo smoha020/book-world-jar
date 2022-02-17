@@ -1,19 +1,18 @@
 ---
-  - name: install mysql maven git
+  - name: provision the ec2
     hosts: testgroup
     tasks:
-      - name: Upgrade all packages on the slave
-        apt: upgrade=yes
+      - name: Update all packages on the slave
+        apt:
+          update_cache: yes
         become: yes
 
-      - name: Install the latest versions of each component
-        apt:
-          name:
-            - git
-            - mysql-server
-            - maven
-          state: latest
-        become: yes
+      - name: Install some components
+          shell: |
+            apt install git -y
+            apt install openjdk-8-jdk -y
+            apt install maven -y
+          become: yes
 
       - name: Check that mysql is enabled and running
         service:
@@ -33,5 +32,5 @@
       - name: Prepare jar file
         shell: |
           cd /home/ubuntu/repos/demo/ && mvn clean install
-          cd /home/ubuntu/repos/demo/target && java -jar demo-0.0.1-SNAPSHOT.jar
+          cd /home/ubuntu/repos/demo/target && nohup java -jar demo-0.0.1-SNAPSHOT.jar &
         become: yes
