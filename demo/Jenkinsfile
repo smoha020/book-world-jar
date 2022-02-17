@@ -12,19 +12,15 @@ pipeline {
                 echo "build stage"
                 sh 'mvn clean install'
             }
-        }
+        }/*
         stage('Test') {
             steps {
-            sh
-                sh './Jenkins/scripts/test.sh'
-            }
+                sh 'mvn test'
         }
         stage('Deliver') {
             steps {
-                nodejs('node') {
-                    sh './Jenkins/scripts/deliver.sh'
-                }
+                sh 'scp 'g
             }
-        }
+        }*/
     }
 }
