@@ -12,11 +12,11 @@ pipeline {
                 echo "build stage"
                 sh 'mvn clean install'
             }
-        }/*
+        }
         stage('Test') {
             steps {
                 sh 'mvn test'
-        }
+        }/*
         stage('Deliver') {
             steps {
                 sh 'scp 'g
