@@ -20,7 +20,7 @@ pipeline {
         }*/
         stage('Staging') {
             steps {
-                sh 'scp var/lib/jenkins/workspace/spring-boot/target/demo-0.0.1-SNAPSHOT.jar ubuntu@18.116.65.199:/home/ubuntu'
+                sh 'scp /var/lib/jenkins/workspace/spring-boot/target/demo-0.0.1-SNAPSHOT.jar ubuntu@18.116.65.199:/home/ubuntu'
             }
         }
     }
