@@ -20,7 +20,10 @@ pipeline {
         }*/
         stage('Staging') {
             steps {
-                sh 'scp /var/lib/jenkins/workspace/spring-boot/target/demo-0.0.1-SNAPSHOT.jar ubuntu@18.116.65.199:/home/ubuntu'
+                withCredentials([sshUserPrivateKey(credentialsId: '8e880e36-0037-40bd-a9d2-5e798fba209b', keyFileVariable: 'PRIVATE_KEY')]) {
+                    sh 'ssh ubuntu@18.116.65.199'
+                    sh 'scp /var/lib/jenkins/workspace/spring-boot/target/demo-0.0.1-SNAPSHOT.jar ubuntu@18.116.65.199:/home/ubuntu'
+                }
             }
         }
     }
