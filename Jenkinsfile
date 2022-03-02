@@ -7,13 +7,13 @@ pipeline {
         CI = 'true'
     }
     stages {
-        /*stage('Build') {
+        stage('Build') {
             steps {
                 echo "build stage"
                 sh 'mvn clean install'
             }
         }
-        stage('Test') {
+        /*stage('Test') {
             steps {
                 sh 'mvn test'
             }
