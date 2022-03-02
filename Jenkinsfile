@@ -25,9 +25,7 @@ pipeline {
                     //sh 'whoami' is jenkins
                     //sh 'ssh ubuntu@18.116.65.199'
                     //sh 'scp /var/lib/jenkins/workspace/spring-boot/target/demo-0.0.1-SNAPSHOT.jar ubuntu@18.116.65.199:/home/ubuntu'
-                    sh 'pwd >> test1.txt'
-                    sh 'cat test1.txt'
-                    //sh 'scp test1.txt ubuntu@18.116.65.199:/home/ubuntu'
+                    sh 'scp /var/lib/jenkins/workspace/spring-boot/test1.txt ubuntu@18.116.65.199:/home/ubuntu'
                 }
             }
         }
