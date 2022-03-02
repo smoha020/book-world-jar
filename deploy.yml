@@ -9,7 +9,6 @@
 
       - name: Install some components
           shell: |
-            apt install git -y
             apt install openjdk-8-jdk -y
             apt install maven -y
           become: yes
