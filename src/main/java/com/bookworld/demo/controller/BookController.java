@@ -46,7 +46,7 @@ public class BookController {
 
     /*
     Requests made from browser are only GET requests.
-    Therefore, Postman is needed
+    Therefore, Postman or similar tool is needed
     */
     @DeleteMapping("/deletebook/{id}")
     public String dropBook(@PathVariable int id) {
