@@ -26,6 +26,7 @@ pipeline {
                     sh 'ssh ubuntu@18.116.65.199 rm -f demo-0.0.1-SNAPSHOT.jar' //force will avoid error msg if directory doesn't exist
                     //sh 'scp -r /var/lib/jenkins/workspace/ ubuntu@18.116.65.199:/home/ubuntu'
                     sh 'scp /var/lib/jenkins/workspace/spring-boot/target/demo-0.0.1-SNAPSHOT.jar ubuntu@18.116.65.199:/home/ubuntu'
+                    sh 'ssh ubuntu@18.116.65.199 ansible-playbook deploy.yml'
                 }
             }
         }

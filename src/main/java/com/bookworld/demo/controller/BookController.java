@@ -15,7 +15,7 @@ public class BookController {
 
     @GetMapping("/")
     public String hello(){
-        return "welcome my friend";
+        return "welcome my guest";
     }
 
     @GetMapping("/getbooks")

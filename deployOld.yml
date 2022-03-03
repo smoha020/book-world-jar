@@ -1,5 +1,5 @@
 ---
-- name: provision the ec2
+- name: provision the ec2 #this playbook is for setting up and deploying to the slave nodes without Jenkins
   hosts: testgroup
   tasks:
     - name: Update all packages on the slave
