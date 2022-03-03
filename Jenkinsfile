@@ -12,12 +12,12 @@ pipeline {
                 echo "build stage"
                 sh 'mvn clean install'
             }
-        }/*
+        }
         stage('Test') {
             steps {
                 sh 'mvn test'
             }
-        }*/
+        }
         stage('Staging') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: '8e880e36-0037-40bd-a9d2-5e798fba209b', keyFileVariable: 'PRIVATE_KEY')]) {
