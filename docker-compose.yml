@@ -4,18 +4,21 @@ services:
   mysql-db:
     image: mysql:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=springtestdb
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: springtestdb
+      MYSQL_USER: newuser
+      MYSQL_PASSWORD: password      
     ports:
       - "3307:3306"
   myserver:
     build: .
     ports:
       - "8084:8084"
-    #environment:
-      #SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/springtestdb?createDatabaseIfNotExist=true
-      #SPRING_DATASOURCE_USERNAME: root
-      #SPRING_DATASOURCE_PASSWORD: root
+    environment:
+      DB_NAME: springtestdb
+      DB_HOST: mysql-db
+      DB_USERNAME: newuser
+      DB_PASSWORD: password
     restart: on-failure #app will crash about 5 or 6 times before db set up is complete
     depends_on:
       - mysql-db
