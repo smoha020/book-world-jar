@@ -9,7 +9,10 @@ spec:
   rules:
   - http:
       paths:
-        - path: /
-          backend:
-            serviceName: my-app
-            servicePort: 8080
+        - backend:
+            service:
+              name: my-app
+              port: 
+                number: 8080
+          path: /
+          pathType: Prefix
