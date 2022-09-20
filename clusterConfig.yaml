@@ -1,0 +1,10 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: saidsFirstCluster
+  region: us-east-2
+managedNodeGroups:
+- name: firstNG
+  instanceType: t2.medium
+  minSize: 2
+  maxSize: 3
