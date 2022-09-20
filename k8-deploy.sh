@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #CREATE NAMESPACE
+
 kubectl apply -f k8s/namespace.yaml
 
 #CREATE SECRETS
@@ -16,4 +17,4 @@ kubectl apply -f k8s/app-manifests.yaml
 kubectl apply -f k8s/ingress-manifests.yaml
 
 #APPLY INGRESS RULES
-kubectl apply k8s/ingress-rules.yaml
+kubectl apply -f k8s/ingress-rules.yaml

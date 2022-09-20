@@ -38,12 +38,12 @@ metadata:
   labels:                         # Labels that will be applied to the resource
     app: mysql-db                 #doesn't have to be mysql-db
 spec:
+  selector:                       # Selects any Pod with labels `app=polling-app,tier=mysql`
+    app: my-app
   ports:
     - port: 3306
-      targetPort: 8080
-  # selector:                       # Selects any Pod with labels `app=polling-app,tier=mysql`
-  #   app: polling-app
-type: ClusterIP
+      targetPort: 3306
+  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment                    # Type of the kubernetes resource
