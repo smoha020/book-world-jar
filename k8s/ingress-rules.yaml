@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: spring-boot-ingress
   namespace: springboot-mysql
-  annotations:
-    ingress.kubernetes.io/rewrite-target: /
+  # annotations:
+  #   kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
-        - path: /apple
+        - path: /
           backend:
-            serviceName: apple-service
-            servicePort: 5678
+            serviceName: my-app
+            servicePort: 8080
