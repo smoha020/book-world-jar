@@ -1,5 +1,5 @@
 #!/bin/bash
 
 eksctl delete cluster \
-    --config-file cluster-1.18.yaml \
+    --config-file clusterConfig.yaml \
     --wait
