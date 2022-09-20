@@ -40,9 +40,10 @@ metadata:
 spec:
   ports:
     - port: 3306
-  selector:                       # Selects any Pod with labels `app=polling-app,tier=mysql`
-    app: polling-app
-type: clusterIP
+      targetPort: 8080
+  # selector:                       # Selects any Pod with labels `app=polling-app,tier=mysql`
+  #   app: polling-app
+type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment                    # Type of the kubernetes resource
@@ -55,8 +56,8 @@ spec:
   selector:
     matchLabels:                    # This deployment applies to the Pods matching the specified labels
       app: mysql-db
-  strategy:
-    type: Recreate
+  # strategy:
+  #   type: Recreate
   template:                         # Template for the Pods in this deployment
     metadata:
       labels:                       # Labels to be applied to the Pods in this deployment
