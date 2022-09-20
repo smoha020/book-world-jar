@@ -17,8 +17,8 @@ spec:
     spec:                     # Spec for the containers that will be run in the Pods
       containers:
       - name: my-app
-        image: smoha020/springbootkubernetes
-        imagePullPolicy: IfNotPresent
+        image: smoha020/springbootkubernetes:latest
+        #imagePullPolicy: IfNotPresent
         ports:
           - name: http
             containerPort: 8080 # The port that the container exposes
