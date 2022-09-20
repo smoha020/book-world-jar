@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#CREATE NAMESPACE
+kubectl apply -f k8s/namespace.yaml
+
 #CREATE SECRETS
 kubectl apply -f k8s/mysql-secrets.yaml 
 
