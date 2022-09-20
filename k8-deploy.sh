@@ -1,16 +1,16 @@
 #!/bin/bash
 
 #CREATE SECRETS
-kubectl apply -f /mysql-secrets.yaml
+kubectl apply -f k8s/mysql-secrets.yaml 
 
 #APPLY MYSQL DEPLOYMENTS AND SERVICES
-kubectl apply -f /mysql-manifests.yaml
+kubectl apply -f k8s/mysql-manifests.yaml
 
 #APPLY SPRING BOOT APP DEPLOYMENTS AND SERVICES
-kubectl apply -f /app-manifests.yaml
+kubectl apply -f k8s/app-manifests.yaml
 
 #LAUNCH INGRESS CONTROLLER
-kubectl apply -f /ingress-manifests.yaml
+kubectl apply -f k8s/ingress-manifests.yaml
 
 #APPLY INGRESS RULES
-kubectl apply /ingress-rules.yaml
+kubectl apply k8s/ingress-rules.yaml
