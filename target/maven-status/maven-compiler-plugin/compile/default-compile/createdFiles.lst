@@ -1,0 +1,5 @@
+com\bookworld\demo\BookworldApplication.class
+com\bookworld\demo\controller\BookController.class
+com\bookworld\demo\service\BookService.class
+com\bookworld\demo\model\Book.class
+com\bookworld\demo\repository\BookRepository.class
