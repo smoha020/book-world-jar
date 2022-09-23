@@ -1,0 +1,5 @@
+#REMOVE A GIT REPOSITORY FROM THE COMMAND LINE IN LINUX
+rm -rf book-world #will delete recursively and -f by force
+
+#RUN SPRING BOOT APPLICATION FROM COMMAND LINE
+mvn spring-boot:run

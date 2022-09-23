@@ -1,2 +1,0 @@
-#REMOVE A GIT REPOSITORY FROM THE COMMAND LINE IN LINUX
-rm -rf book-world #will delete recursively and -f by force
