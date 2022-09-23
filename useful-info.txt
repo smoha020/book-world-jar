@@ -3,3 +3,12 @@ rm -rf book-world #will delete recursively and -f by force
 
 #RUN SPRING BOOT APPLICATION FROM COMMAND LINE
 mvn spring-boot:run
+
+
+#MYSQL USEFUL COMMANDS
+
+SELECT User, Host, Password FROM mysql.user;    #list all the users
+
+SELECT CURRENT_USER();                          #who you are and which hosts you have access from
+
+SELECT USER();                                  #who you are and which host you are currently accessing from (I think)
