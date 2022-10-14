@@ -12,3 +12,10 @@ SELECT User, Host, Password FROM mysql.user;    #list all the users
 SELECT CURRENT_USER();                          #who you are and which hosts you have access from
 
 SELECT USER();                                  #who you are and which host you are currently accessing from (I think)
+
+
+#PUSH TO DOCKER HUB
+docker tag springbootkubernetes[tag of you local machine] smoha020/springbootkubernetes:[tag of the docker hub repo]  #if the tag on your local is 'latest' you can leave it blank 
+
+docker push smoha020/springbootkubernetes:0.0.5  
+
