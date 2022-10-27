@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/name: ingress-nginx
-  name: ingress-nginx
+  name: spring-boot-ingress
 ---
 apiVersion: v1
 automountServiceAccountToken: true
@@ -17,7 +17,7 @@ metadata:
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/version: 1.3.1
   name: ingress-nginx
-  namespace: ingress-nginx
+  namespace: spring-boot-ingress
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -29,7 +29,7 @@ metadata:
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/version: 1.3.1
   name: ingress-nginx-admission
-  namespace: ingress-nginx
+  namespace: spring-boot-ingress
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -41,7 +41,7 @@ metadata:
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/version: 1.3.1
   name: ingress-nginx
-  namespace: ingress-nginx
+  namespace: spring-boot-ingress
 rules:
 - apiGroups:
   - ""
@@ -560,7 +560,7 @@ metadata:
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/version: 1.3.1
   name: ingress-nginx-admission-patch
-  namespace: ingress-nginx
+  namespace: spring-boot-ingress
 spec:
   template:
     metadata:
