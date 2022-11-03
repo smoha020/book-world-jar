@@ -59,7 +59,7 @@ spec:
   selector:
     app: my-app               # The service exposes Pods with label `app=my-app`
   ports:                      # Forward incoming connections on port 8080 to the target port 8080
-  - name: TCP
+  - name: tcp
     port: 8080
     targetPort: 8080
   type: ClusterIP
