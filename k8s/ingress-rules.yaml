@@ -10,10 +10,10 @@ spec:
   - host: a06e4dbdfc0e84ded9320875b9ad5c3b-1167032956.us-east-2.elb.amazonaws.com         #host is required by nginx 
     http:
       paths:
-        - backend:
+        - path: /getbooks
+          pathType: Prefix
+          backend:
             service:
               name: my-app
               port: 
                 number: 8080
-          path: /
-          pathType: Prefix
