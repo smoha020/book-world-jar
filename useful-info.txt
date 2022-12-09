@@ -26,6 +26,8 @@ docker push smoha020/springbootkubernetes:0.0.5
 psql -d postgres -h localhost -p 5432 -U postgresadmin     #you must be the postgres user in Linux. This user is automatically created when postgres is installed
 
 \l                            #list dbs
+\c dbname                     #use database
+\dt                           #show tables
 \s                            #Display command history
 \i filename                   #Execute psql commands from a file
 \q                            #exit 
