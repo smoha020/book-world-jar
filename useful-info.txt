@@ -9,9 +9,10 @@ mvn spring-boot:run
 
 SELECT User, Host, Password FROM mysql.user;    #list all the users
 
-SELECT CURRENT_USER();                          #who you are and which hosts you have access from
+SELECT CURRENT_USER();       #who you are and which hosts you have access from
 
-SELECT USER();                                  #who you are and which host you are currently accessing from (I think)
+SELECT USER();               #who you are and which host you are currently accessing from (I think)
+\sql                         #switch from 'JS>' to 'SQL>' in the shell
 
 
 #PUSH TO DOCKER HUB
@@ -19,3 +20,12 @@ docker tag springbootkubernetes[tag of you local machine] smoha020/springbootkub
 
 docker push smoha020/springbootkubernetes:0.0.5  
 
+#POSTGRES COMMANDS
+
+#login
+psql -d postgres -h localhost -p 5432 -U postgresadmin     #you must be the postgres user in Linux. This user is automatically created when postgres is installed
+
+\l                            #list dbs
+\s                            #Display command history
+\i filename                   #Execute psql commands from a file
+\q                            #exit 
