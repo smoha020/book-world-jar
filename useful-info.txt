@@ -2,7 +2,8 @@
 if you put 'spring.jpa.hibernate.ddl-auto = update' in the application.properties file, 
 then 'mvn clean install' command will fail
 
-
+#ISSUE WITH ID IN DATABASE 
+when creating the db tables, be sure to 1) make the id the primary key and 2) auto increment
 
 #REMOVE A GIT REPOSITORY FROM THE COMMAND LINE IN LINUX
 rm -rf book-world #will delete recursively and -f by force
