@@ -1,3 +1,9 @@
+#APPLICATION PROPERTIES FILE
+if you put 'spring.jpa.hibernate.ddl-auto = update' in the application.properties file, 
+then 'mvn clean install' command will fail
+
+
+
 #REMOVE A GIT REPOSITORY FROM THE COMMAND LINE IN LINUX
 rm -rf book-world #will delete recursively and -f by force
 
