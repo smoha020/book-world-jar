@@ -3,16 +3,18 @@ kind: Ingress
 metadata:
   name: spring-boot-ingress
   namespace: springboot-mysql
-  # annotations:
-  #   kubernetes.io/rewrite-target: /
+  annotations:
+    #kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"                    #routing will not work without this
 spec:
   rules:
-  - http:
+  - host: a06e4dbdfc0e84ded9320875b9ad5c3b-1167032956.us-east-2.elb.amazonaws.com         #host is required by nginx 
+    http:
       paths:
-        - backend:
+        - path: /
+          pathType: Prefix
+          backend:
             service:
               name: my-app
               port: 
                 number: 8080
-          path: /
-          pathType: Prefix
