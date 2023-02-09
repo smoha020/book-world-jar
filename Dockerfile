@@ -1,4 +1,4 @@
 FROM openjdk:8
-ADD target/springboot-kubernetes.jar springboot-kubernetes.jar
+ADD target/bookworld.jar bookworld.jar
 COPY /src /src
-ENTRYPOINT ["java", "-jar", "springboot-kubernetes.jar"]
+ENTRYPOINT ["java", "-jar", "bookworld.jar"]
