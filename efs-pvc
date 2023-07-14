@@ -2,7 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: efs-pvc
-  namespace: optimo-dev
+  namespace: springboot-mysql
 #  annotations:
 #    volume.beta.kubernetes.io/storage-class: "aws-efs"
 spec:
