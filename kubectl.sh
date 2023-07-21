@@ -19,19 +19,21 @@ echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 
 
 #3. Install kubectl
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+#sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 #c. Apply execute permissions to the binary.
 
-chmod +x ./kubectl
+#chmod +x ./kubectl
 
 
 #d. If you do not have root access on the target system, you can still install kubectl to the ~/.local/bin directory:
 
-#chmod +x kubectl
-#mkdir -p ~/.local/bin
-#mv ./kubectl ~/.local/bin/kubectl
+chmod +x kubectl
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
 # and then append (or prepend) ~/.local/bin to $PATH
+#copy the below comman to the end of the ~/.bashrc
+#export PATH="~/.local/bin:$PATH"
 
 #Test to ensure the version you installed is up-to-date:
 kubectl version --client
