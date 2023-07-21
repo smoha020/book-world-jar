@@ -1,3 +1,9 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: springboot-mysql
+---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
