@@ -112,3 +112,8 @@ parameters:
   # gidMin: "5555"
   # gidMax: "5555"
   # gidAllocate: "true"
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
