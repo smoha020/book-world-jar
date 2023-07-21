@@ -47,6 +47,13 @@ spec:
             secretKeyRef:
               name: mysql-secrets
               key: database
+        volumeMounts:
+        - name: efs-pvc  # This name should match the name specified in `volumes.name`
+          mountPath: /src/data
+      volumes:                       # A PersistentVolume is mounted as a volume to the Pod  
+      - name: efs-pvc
+        persistentVolumeClaim:
+          claimName: efs-pvc
 ---
 apiVersion: v1                # API version
 kind: Service                 # Type of the kubernetes resource
