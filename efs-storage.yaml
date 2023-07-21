@@ -69,6 +69,8 @@ kind: Deployment
 metadata:
   name: nfs-client-provisioner
   namespace: storage
+  labels:
+    app: nfs-client-provisioner
 spec:
   replicas: 1
   strategy:
