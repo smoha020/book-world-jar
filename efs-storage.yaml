@@ -103,14 +103,14 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/nfs-subdir-external-provisioner
             - name: NFS_SERVER
-              value: 192.168.190.252
+              value: 192.168.164.55
             - name: NFS_PATH
-              value: /
+              value: /      #THIS IS THE DEFAULT ACCESS POINT FOR EFS. MAKE SURE YOU DON'T CHANGE THIS!
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 192.168.190.252
-            path: /
+            server: 192.168.164.55
+            path: /        #THIS IS THE DEFAULT ACCESS POINT FOR EFS. MAKE SURE YOU DON'T CHANGE THIS!
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
