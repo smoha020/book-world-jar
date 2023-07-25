@@ -5,7 +5,7 @@
 #1. Download the manifest. Replace release-X.X with your desired branch. We recommend using the latest released version. For a list of active branches, see Branches.
 
 kubectl kustomize \
-    "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/ecr/?ref=release-1.X" > private-ecr-driver.yaml
+    "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/ecr/?ref=release-1.5" > private-ecr-driver.yaml
 #Note
 #If you encounter an issue that you aren't able to resolve by adding IAM permissions, try the Manifest (public registry) steps instead.
 
