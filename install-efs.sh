@@ -12,7 +12,7 @@ kubectl kustomize \
 #2. In the following command, replace region-code with the AWS Region that your cluster is in. Then run the modified command 
 #to replace us-west-2 in the file with your AWS Region.
 
-sed -i.bak -e 's|us-west-2|region-code|' private-ecr-driver.yaml
+sed -i.bak -e 's|us-east-2|region-code|' private-ecr-driver.yaml
 
 #3. Replace account in the following command with the account from Amazon container image registries for the AWS Region that 
 #your cluster is in and then run the modified command to replace 602401143452 in the file.
