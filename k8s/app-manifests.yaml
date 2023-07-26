@@ -53,7 +53,7 @@ spec:
       volumes:                       # A PersistentVolume is mounted as a volume to the Pod  
       - name: efs-pvc
         persistentVolumeClaim:
-          claimName: efs-pvc
+          claimName: efs-csi-pvc
 ---
 apiVersion: v1                # API version
 kind: Service                 # Type of the kubernetes resource
