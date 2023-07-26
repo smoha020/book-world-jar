@@ -97,4 +97,4 @@ spec:
       volumes:                       # A PersistentVolume is mounted as a volume to the Pod  
       - name: mysql-persistent-storage
         persistentVolumeClaim:
-          claimName: efs-csi-pvc
+          claimName: ebs-csi-pvc
