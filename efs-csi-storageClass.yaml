@@ -10,3 +10,8 @@ parameters:
   gidRangeStart: "1000" # optional
   gidRangeEnd: "2000" # optional
   #basePath: "/dynamic_provisioning" # optional
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
