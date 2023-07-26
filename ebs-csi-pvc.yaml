@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: springboot-mysql
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: efs-csi-pvc
+  namespace: springboot-mysql
+spec:
+  storageClassName: ebs-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
