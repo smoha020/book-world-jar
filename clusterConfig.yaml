@@ -8,3 +8,6 @@ managedNodeGroups:
   instanceType: t2.medium
   minSize: 2
   maxSize: 3
+  ssh: 
+    publicKeyName: first
+    allow: true
