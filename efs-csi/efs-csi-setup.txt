@@ -1,0 +1,50 @@
+1. Create an Amazon EFS file system for your Amazon EKS cluster.
+
+  i. Create a file system. Replace region-code with the AWS Region that your cluster is in.
+
+file_system_id=$(aws efs create-file-system \
+    --region region-code \
+    --performance-mode generalPurpose \
+    --query 'FileSystemId' \
+    --output text)
+
+  ii. Create mount targets.
+
+     a. Determine the IP address of your cluster nodes.
+
+        kubectl get nodes
+
+
+        The example output is as follows.
+
+NAME                                         STATUS   ROLES    AGE   VERSION
+ip-192-168-56-0.region-code.compute.internal   Ready    <none>   19m   v1.XX.X-eks-49a6c0
+
+
+      b. Determine the IDs of the subnets in your VPC and which Availability Zone the subnet is in.
+
+         aws ec2 describe-subnets \
+             --filters "Name=vpc-id,Values=$vpc_id" \
+             --query 'Subnets[*].{SubnetId: SubnetId,AvailabilityZone: AvailabilityZone,CidrBlock: CidrBlock}' \
+             --output table
+
+         The example output is as follows.
+
+|                           DescribeSubnets                          |
++------------------+--------------------+----------------------------+
+| AvailabilityZone |     CidrBlock      |         SubnetId           |
++------------------+--------------------+----------------------------+
+|  region-codec    |  192.168.128.0/19  |  subnet-EXAMPLE6e421a0e97  |
+|  region-codeb    |  192.168.96.0/19   |  subnet-EXAMPLEd0503db0ec  |
+|  region-codec    |  192.168.32.0/19   |  subnet-EXAMPLEe2ba886490  |
+|  region-codeb    |  192.168.0.0/19    |  subnet-EXAMPLE123c7c5182  |
+|  region-codea    |  192.168.160.0/19  |  subnet-EXAMPLE0416ce588p  |
++------------------+--------------------+----------------------------+
+
+
+     c.Add mount targets for the subnets that your nodes are in. From the output in the previous two steps, the cluster has one node with an IP address of 192.168.56.0. That IP address is within the CidrBlock of the subnet with the ID subnet-EXAMPLEe2ba886490. As a result, the following command creates a mount target for the subnet the node is in. If there were more nodes in the cluster, you'd run the command once for a subnet in each AZ that you had a node in, replacing subnet-EXAMPLEe2ba886490 with the appropriate subnet ID.
+
+     aws efs create-mount-target \
+         --file-system-id $file_system_id \
+         --subnet-id subnet-EXAMPLEe2ba886490 \
+         --security-groups $security_group_id

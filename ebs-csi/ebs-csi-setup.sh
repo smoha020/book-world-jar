@@ -44,3 +44,6 @@ eksctl create iamserviceaccount \
 #3. To add the Amazon EBS CSI add-on using eksctl
 
 eksctl create addon --name aws-ebs-csi-driver --cluster springbootMysqlCluster --service-account-role-arn arn:aws:iam::348815537453:role/AmazonEKS_EBS_CSI_DriverRole --force
+
+#4. to delete it
+#eksctl delete addon --cluster springbootMysqlCluster --name aws-ebs-csi-driver 
