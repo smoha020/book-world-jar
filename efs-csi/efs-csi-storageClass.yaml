@@ -12,6 +12,6 @@ parameters:
   #basePath: "/dynamic_provisioning" # optional
 reclaimPolicy: Retain
 allowVolumeExpansion: true
-mountOptions:
-  - debug
+# mountOptions:
+#   - debug
 volumeBindingMode: Immediate
