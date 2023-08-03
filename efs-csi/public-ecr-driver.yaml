@@ -3,6 +3,14 @@ kind: ServiceAccount
 metadata:
   labels:
     app.kubernetes.io/name: aws-efs-csi-driver
+  name: efs-csi-controller-sa
+  namespace: kube-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app.kubernetes.io/name: aws-efs-csi-driver
   name: efs-csi-node-sa
   namespace: kube-system
 ---
@@ -126,7 +134,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: amazon/aws-efs-csi-driver:v1.5.8
+        image: amazon/aws-efs-csi-driver:v1.5.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
@@ -230,7 +238,7 @@ spec:
         env:
         - name: CSI_ENDPOINT
           value: unix:/csi/csi.sock
-        image: amazon/aws-efs-csi-driver:v1.5.8
+        image: amazon/aws-efs-csi-driver:v1.5.9
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
