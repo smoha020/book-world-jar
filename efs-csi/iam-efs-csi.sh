@@ -53,4 +53,4 @@ eksctl create iamserviceaccount \
     --name efs-csi-controller-sa \
     --attach-policy-arn arn:aws:iam::348815537453:policy/EKS_EFS_CSI_Driver_Policy \
     --approve \
-    --region us-east-2
+    --region us-east-2 

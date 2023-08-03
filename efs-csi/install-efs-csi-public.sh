@@ -10,14 +10,14 @@ kubectl kustomize \
 #2. If you already created a service account by following Create an IAM policy and role, then edit the 
 #public-ecr-driver.yaml file. Remove the following lines that create a Kubernetes service account.
 
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  labels:
-    app.kubernetes.io/name: aws-efs-csi-driver
-  name: efs-csi-controller-sa
-  namespace: kube-system
----
+#apiVersion: v1
+#kind: ServiceAccount
+#metadata:
+#  labels:
+#    app.kubernetes.io/name: aws-efs-csi-driver
+#  name: efs-csi-controller-sa
+#  namespace: kube-system
+#---
 
 
 #3. apply the file
