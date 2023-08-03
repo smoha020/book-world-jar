@@ -7,6 +7,6 @@ parameters:
   type: gp2
 reclaimPolicy: Retain
 allowVolumeExpansion: true
-mountOptions:
-  - debug
+#mountOptions:
+#  - debug
 volumeBindingMode: WaitForFirstConsumer
