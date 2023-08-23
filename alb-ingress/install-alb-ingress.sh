@@ -1,42 +1,6 @@
 #!/bin/bash
 
 
-#1. OIDC
-
-#a. check if you have it 
-
-export cluster_name=springbootMysqlCluster
-oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5)
-
-
-#b. check if it is in your account.
-aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4
-
-
-#c. create the OIDC identity provider for this cluster
-eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
-
-
-####################################
-
-#2. Create IAM Policy 
-
-curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
-
-aws iam create-policy \
-    --policy-name AWSLoadBalancerControllerIAMPolicy \
-    --policy-document file://iam_policy.json
-
-
-#3. Create Role and Service Account
-
-#a. retrieve OIDC provider ID
-
-oidc_id=$(aws eks describe-cluster --name my-cluster --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5)
-
-#b. check if it is in your account.
-
-aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4
 
 #c. Replace EXAMPLED539D4633E53DE1B71EXAMPLE with the output returned in the previous step
 
@@ -48,13 +12,13 @@ cat >load-balancer-role-trust-policy.json <<EOF
         {
             "Effect": "Allow",
             "Principal": {
-                "Federated": "arn:aws:iam::348815537453:oidc-provider/oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+                "Federated": "arn:aws:iam::348815537453:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/EE36BCB2CDB3AEC236F2804A0FC3645E"
             },
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:aud": "sts.amazonaws.com",
-                    "oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE:sub": "system:serviceaccount:kube-system:aws-load-balancer-controller"
+                    "oidc.eks.us-east-2.amazonaws.com/id/EE36BCB2CDB3AEC236F2804A0FC3645E:aud": "sts.amazonaws.com",
+                    "oidc.eks.us-east-2.amazonaws.com/id/EE36BCB2CDB3AEC236F2804A0FC3645E:sub": "system:serviceaccount:kube-system:aws-load-balancer-controller"
                 }
             }
         }
@@ -100,18 +64,46 @@ kubectl apply -f aws-load-balancer-controller-service-account.yaml
 
 #4. Install ALB Ingress Controller
 
+#a. Install cert-manager
+kubectl apply \
+    --validate=false \
+    -f https://github.com/jetstack/cert-manager/releases/download/v1.12.3/cert-manager.yaml
 
 
 
+#b. Install the controller.
+
+#i. Download the controller
+
+#curl -Lo v2_5_4_full.yaml https://github.com/kubernetes-sigs/aws-load-balancer-controller/releases/download/v2.5.4/v2_5_4_full.yaml
 
 
+#ii. Make edits
+#Remove service account section (ONLY for version v2_5_4_full.yaml)
+
+#sed -i.bak -e '596,604d' ./v2_5_4_full.yaml
+
+#Replace your-cluster-name in the Deployment spec section of the file 
+
+#sed -i.bak -e 's|your-cluster-name|springbootMysqlCluster|' ./v2_5_4_full.yaml
+
+#Add the following to the - arg: section
+#            - --aws-vpc-id=vpc-xxxxxxxx
+#            - --aws-region=region-code
+#
+#
+
+#iii. Apply the file
+
+#kubectl apply -f v2_5_4_full.yaml
 
 
+#iv. Download IngressClass and IngressClassParams manifests
+curl -Lo v2_5_4_ingclass.yaml https://github.com/kubernetes-sigs/aws-load-balancer-controller/releases/download/v2.5.4/v2_5_4_ingclass.yaml
 
+#v. Apply the manifests
 
-
-
-
+#kubectl apply -f v2_5_4_ingclass.yaml
 
 
 
