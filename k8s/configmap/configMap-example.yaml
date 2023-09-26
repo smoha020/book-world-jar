@@ -1,3 +1,4 @@
+#OPTION 1: USE SPECIFIC VARIABLES
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,9 +21,45 @@ spec:
         image: nginx:1.14.2
         ports:
         - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: my-env-config
+        env:
+          - name: USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: my-env-config
+                key: USERNAME
+          - name: PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: my-env-config
+                key: PASSWORD
+---
+#OPTION 2: USER THE ENTIRE FILE
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: nginx-deployment
+#   namespace: springboot-mysql
+#   labels:
+#     app: nginx
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: nginx
+#   template:
+#     metadata:
+#       labels:
+#         app: nginx
+#     spec:
+#       containers:
+#       - name: nginx
+#         image: nginx:1.14.2
+#         ports:
+#         - containerPort: 80
+#         envFrom:
+#         - configMapRef:
+#             name: my-env-config
 ---
 apiVersion: v1
 kind: Service
